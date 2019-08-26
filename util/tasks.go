@@ -37,8 +37,17 @@ func RemoveTask() {
 }
 
 // GetTasks get task list
-func GetTasks() {
-	fmt.Println("get tasks from file")
+func GetTasks() string {
+
+	out := fmt.Sprintf("%s:\n", defaultList.name)
+	if defaultList.tasks != nil {
+		for i, task := range defaultList.tasks {
+			out += fmt.Sprintf("- [%d] \"%s\" (%t)\n", i, task.description, task.status)
+		}
+	} else {
+		out += "Empty list\n"
+	}
+	return out
 }
 
 // createTaskFile
