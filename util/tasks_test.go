@@ -52,3 +52,21 @@ func TestAddTask(t *testing.T) {
 	})
 
 }
+
+func TestGetTask(t *testing.T) {
+
+	t.Run("EmptyListMessageIsPrinted", func(t *testing.T) {
+		defaultList = emptyList
+		got := GetTasks()
+		want := "default:\nEmpty list\n"
+		assertCorrectMessage(t, got, want)
+	})
+
+	t.Run("EmptyListIsEmpty", func(t *testing.T) {
+		defaultList = emptyList
+		_ = GetTasks()
+		got := defaultList
+		want := emptyList
+		assertCorrectList(t, got, want)
+	})
+}
