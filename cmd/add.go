@@ -17,6 +17,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 package cmd
 
 import (
+	"fmt"
+	"strings"
+
 	"github.com/raelga/yodo/util"
 
 	"github.com/spf13/cobra"
@@ -28,7 +31,7 @@ var addCmd = &cobra.Command{
 	Short: "Adds a task to the list",
 	Long:  `Adds a task to the data`,
 	Run: func(cmd *cobra.Command, args []string) {
-		util.AddTask()
+		fmt.Printf(util.AddTask(false, strings.Join(args, " ")))
 	},
 }
 
