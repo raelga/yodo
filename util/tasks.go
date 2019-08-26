@@ -6,6 +6,18 @@ import (
 	"path/filepath"
 )
 
+type task struct {
+	id          int
+	status      bool
+	description string
+}
+
+type list struct {
+	id    int
+	name  string
+	tasks []task
+}
+
 // AddTask adds a task to task list
 func AddTask() {
 	fmt.Println("add task to file")
