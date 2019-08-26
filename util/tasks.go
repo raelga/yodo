@@ -25,8 +25,10 @@ var defaultList = list{
 }
 
 // AddTask adds a task to task list
-func AddTask() {
-	fmt.Println("add task to file")
+func AddTask(status bool, description string) string {
+	task := task{id: 0, status: status, description: description}
+	defaultList.tasks = append(defaultList.tasks, task)
+	return fmt.Sprintf("add task \"%s\" (%t) to file", task.description, task.status)
 }
 
 // RemoveTask deletes a tast from the task list
