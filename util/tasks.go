@@ -18,6 +18,12 @@ type list struct {
 	tasks []task
 }
 
+var defaultList = list{
+	id:    0,
+	name:  "default",
+	tasks: nil,
+}
+
 // AddTask adds a task to task list
 func AddTask() {
 	fmt.Println("add task to file")
