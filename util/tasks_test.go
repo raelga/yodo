@@ -53,7 +53,7 @@ func TestAddTask(t *testing.T) {
 
 }
 
-func TestGetTask(t *testing.T) {
+func TestGetTasks(t *testing.T) {
 
 	t.Run("EmptyListMessageIsPrinted", func(t *testing.T) {
 		defaultList = emptyList
