@@ -95,6 +95,14 @@ func TestRemoveTask(t *testing.T) {
 		assertCorrectMessage(t, got, want)
 	})
 
+	t.Run("RemoveTaskRemovesTheTask", func(t *testing.T) {
+		defaultList = task1List
+		_ = RemoveTask(defaultList.tasks[0].id)
+		got := defaultList
+		want := emptyList
+		assertCorrectList(t, got, want)
+	})
+
 	t.Run("RemoveTaskFromEmptyListMessageIsPrinted", func(t *testing.T) {
 		defaultList = emptyList
 		got := RemoveTask(0)
