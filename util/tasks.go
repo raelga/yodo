@@ -60,7 +60,7 @@ func RemoveTask(taskID int) string {
 // GetTasks get task list
 func GetTasks() string {
 	out := fmt.Sprintf("%s:\n", defaultList.name)
-	if defaultList.tasks != nil {
+	if len(defaultList.tasks) > 0 {
 		for i, task := range defaultList.tasks {
 			out += fmt.Sprintf("- [%d] \"%s\" (%t)\n", i, task.description, task.status)
 		}

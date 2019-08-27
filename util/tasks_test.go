@@ -11,7 +11,7 @@ import (
 var emptyList = list{
 	id:    0,
 	name:  "default",
-	tasks: nil,
+	tasks: make([]task, 0),
 }
 
 var taskMissing = task{id: -1, status: false, description: "Missing task"}
