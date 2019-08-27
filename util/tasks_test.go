@@ -14,6 +14,7 @@ var emptyList = list{
 	tasks: nil,
 }
 
+var taskMissing = task{id: -1, status: false, description: "Missing task"}
 var task1 = task{id: 0, status: false, description: "task1"}
 
 var task1List = list{
@@ -51,6 +52,38 @@ func TestAddTask(t *testing.T) {
 		assertCorrectList(t, got, want)
 	})
 
+}
+
+func TestRemoveTask(t *testing.T) {
+
+	t.Run("RemoveTaskMessageIsPrinted", func(t *testing.T) {
+		defaultList = task1List
+		got := RemoveTask(0)
+		want := fmt.Sprintf("Task %d removed.\n", task1.id)
+		assertCorrectMessage(t, got, want)
+	})
+
+	t.Run("RemoveTaskFromEmptyListMessageIsPrinted", func(t *testing.T) {
+		defaultList = emptyList
+		got := RemoveTask(0)
+		want := fmt.Sprintf("Task %d not found.\n", task1.id)
+		assertCorrectMessage(t, got, want)
+	})
+
+	t.Run("RemoveTaskNotFoundListMessageIsPrinted", func(t *testing.T) {
+		defaultList = task1List
+		got := RemoveTask(taskMissing.id)
+		want := fmt.Sprintf("Task %d not found.\n", taskMissing.id)
+		assertCorrectMessage(t, got, want)
+	})
+
+	t.Run("RemoveFromEmptyListIsEmpty", func(t *testing.T) {
+		defaultList = emptyList
+		_ = RemoveTask(0)
+		got := defaultList
+		want := emptyList
+		assertCorrectList(t, got, want)
+	})
 }
 
 func TestGetTasks(t *testing.T) {
