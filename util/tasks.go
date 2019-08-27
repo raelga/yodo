@@ -32,8 +32,16 @@ func AddTask(status bool, description string) string {
 }
 
 // RemoveTask deletes a tast from the task list
-func RemoveTask() {
-	fmt.Println("del task from file")
+func RemoveTask(taskID int) string {
+	if defaultList.tasks != nil {
+		for i, task := range defaultList.tasks {
+			if task.id == taskID {
+				defaultList.tasks = append(defaultList.tasks[:i], defaultList.tasks[i+1:]...)
+				return fmt.Sprintf("Task %d removed.\n", task.id)
+			}
+		}
+	}
+	return fmt.Sprintf("Task %d not found.\n", taskID)
 }
 
 // GetTasks get task list
