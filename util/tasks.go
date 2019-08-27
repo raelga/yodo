@@ -21,7 +21,7 @@ type list struct {
 var defaultList = list{
 	id:    0,
 	name:  "default",
-	tasks: nil,
+	tasks: make([]task, 0),
 }
 
 // AddTask adds a task to task list
