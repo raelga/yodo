@@ -46,7 +46,6 @@ func RemoveTask(taskID int) string {
 
 // GetTasks get task list
 func GetTasks() string {
-
 	out := fmt.Sprintf("%s:\n", defaultList.name)
 	if defaultList.tasks != nil {
 		for i, task := range defaultList.tasks {
@@ -60,17 +59,14 @@ func GetTasks() string {
 
 // createTaskFile
 func createTaskFile(taskFile string) {
-
 	if err := os.MkdirAll(filepath.Dir(taskFile), 0755); err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
-
 	if defaultCfgFile, err := os.Create(taskFile); err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	} else {
 		defaultCfgFile.Close()
 	}
-
 }
