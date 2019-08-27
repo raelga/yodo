@@ -54,6 +54,38 @@ func TestAddTask(t *testing.T) {
 
 }
 
+func TestDoTask(t *testing.T) {
+
+	t.Run("DoTaskMessageIsPrinted", func(t *testing.T) {
+		defaultList = task1List
+		got := DoTask(0)
+		want := fmt.Sprintf("Task %d done.\n", task1.id)
+		assertCorrectMessage(t, got, want)
+	})
+
+	t.Run("DoTaskFromEmptyListMessageIsPrinted", func(t *testing.T) {
+		defaultList = emptyList
+		got := DoTask(0)
+		want := fmt.Sprintf("Task %d not found.\n", task1.id)
+		assertCorrectMessage(t, got, want)
+	})
+
+	t.Run("DoTaskNotFoundListMessageIsPrinted", func(t *testing.T) {
+		defaultList = task1List
+		got := DoTask(taskMissing.id)
+		want := fmt.Sprintf("Task %d not found.\n", taskMissing.id)
+		assertCorrectMessage(t, got, want)
+	})
+
+	t.Run("DoFromEmptyListIsEmpty", func(t *testing.T) {
+		defaultList = emptyList
+		_ = DoTask(0)
+		got := defaultList
+		want := emptyList
+		assertCorrectList(t, got, want)
+	})
+}
+
 func TestRemoveTask(t *testing.T) {
 
 	t.Run("RemoveTaskMessageIsPrinted", func(t *testing.T) {
