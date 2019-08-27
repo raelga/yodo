@@ -31,6 +31,19 @@ func AddTask(status bool, description string) string {
 	return fmt.Sprintf("add task \"%s\" (%t) to file", task.description, task.status)
 }
 
+// DoTask deletes a tast from the task list
+func DoTask(taskID int) string {
+	if defaultList.tasks != nil {
+		for i, task := range defaultList.tasks {
+			if task.id == taskID {
+				defaultList.tasks[i].status = true
+				return fmt.Sprintf("Task %d done.\n", task.id)
+			}
+		}
+	}
+	return fmt.Sprintf("Task %d not found.\n", taskID)
+}
+
 // RemoveTask deletes a tast from the task list
 func RemoveTask(taskID int) string {
 	if defaultList.tasks != nil {
