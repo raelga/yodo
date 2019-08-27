@@ -17,22 +17,29 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 package cmd
 
 import (
+	"fmt"
+	"strconv"
+
 	"github.com/raelga/yodo/util"
 
 	"github.com/spf13/cobra"
 )
 
-// remoteCmd represents the add command
-var remoteCmd = &cobra.Command{
+// removeCmd represents the add command
+var removeCmd = &cobra.Command{
 	Use:   "remove",
 	Short: "Removes a task from the list",
 	Long:  `Removes a task from the data`,
 	Run: func(cmd *cobra.Command, args []string) {
-		util.RemoveTask()
+		taskID, err := strconv.Atoi(args[0])
+		if err != nil {
+			panic(fmt.Sprintf("Unable to parse task %s: %s", args[0], err))
+		}
+		fmt.Printf(util.RemoveTask(taskID))
 	},
 }
 
 func init() {
-	rootCmd.AddCommand(remoteCmd)
+	rootCmd.AddCommand(removeCmd)
 
 }
