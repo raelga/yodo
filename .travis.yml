@@ -1,0 +1,26 @@
+dist: xenial
+
+language: go
+
+env:
+  - GO111MODULE=on
+  - GOFLAGS='-mod vendor'
+
+go:
+  - 1.12.x
+  - 1.11.x
+
+git:
+  depth: 1
+
+install: true
+
+notifications:
+  email: false
+
+before_script:
+  - GO111MODULE=on go get github.com/golangci/golangci-lint/cmd/golangci-lint@v1.17.1
+
+script:
+  - golangci-lint run       # run a bunch of code checkers/linters in parallel
+  - go test -v -race -cover ./...  # Run all the tests with the race detector enabled
