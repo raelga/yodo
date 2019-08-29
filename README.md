@@ -17,9 +17,7 @@ This application is just a playground to learn:
 - GitHub Actions
 
 
-```
-$ go build 
-```
+## Usage
 
 ```yaml
 $ ./yodo get
@@ -36,6 +34,7 @@ add task "Add verbose mode" (false) to file$
 $ ./yodo get
 default:
 - [0] "Add verbose mode" (false)
+```
 
 ```yaml
 $ ./yodo do 0
