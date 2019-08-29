@@ -36,6 +36,8 @@ add task "Add verbose mode" (false) to file$
 $ ./yodo get
 default:
 - [0] "Add verbose mode" (false)
+
+```yaml
 $ ./yodo do 0
 Task 0 done.
 ```
