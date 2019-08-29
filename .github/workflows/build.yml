@@ -24,7 +24,14 @@ jobs:
             dep ensure
         fi
 
+    - name: Get linter
+      run: GO111MODULE=on go get github.com/golangci/golangci-lint/cmd/golangci-lint@v1.17.1
+
+    - name: Lint
+      run: golangci-lint run
+
     - name: Test
       run: go test -v -cover ./...
+
     - name: Build
       run: go build -v .
