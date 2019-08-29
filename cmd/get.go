@@ -31,7 +31,7 @@ var getCmd = &cobra.Command{
 	Short: "Gets all tasks from a list",
 	Long:  `gets all tasks from a list`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Printf(util.GetTasks())
+		fmt.Println(util.GetTasks())
 	},
 }
 

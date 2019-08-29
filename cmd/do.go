@@ -36,7 +36,7 @@ var doCmd = &cobra.Command{
 		if err != nil {
 			panic(fmt.Sprintf("Unable to parse task %s: %s", args[0], err))
 		}
-		fmt.Printf(util.DoTask(taskID))
+		fmt.Println(util.DoTask(taskID))
 	},
 }
 

@@ -36,7 +36,7 @@ var removeCmd = &cobra.Command{
 		if err != nil {
 			panic(fmt.Sprintf("Unable to parse task %s: %s", args[0], err))
 		}
-		fmt.Printf(util.RemoveTask(taskID))
+		fmt.Println(util.RemoveTask(taskID))
 	},
 }
 

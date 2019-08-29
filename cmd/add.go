@@ -32,7 +32,7 @@ var addCmd = &cobra.Command{
 	Short: "Adds a task to the list",
 	Long:  `Adds a task to the data`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Printf(util.AddTask(false, strings.Join(args, " ")))
+		fmt.Println(util.AddTask(false, strings.Join(args, " ")))
 	},
 }
 
