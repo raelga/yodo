@@ -2,7 +2,6 @@ package util
 
 import (
 	"errors"
-	"fmt"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -47,7 +46,6 @@ func saveTasksFile(listFilePath string, list list) error {
 	if err != nil {
 		return err
 	}
-	fmt.Printf("Saving %v %s\n", list, listFilePath)
 	return ioutil.WriteFile(listFilePath, bytes, 0644)
 }
 
