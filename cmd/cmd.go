@@ -29,7 +29,6 @@ import (
 )
 
 var verbose bool
-var taskFile string
 var cfgFile string
 
 const defaultConfigDir = ".yodo"
