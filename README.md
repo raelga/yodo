@@ -1,4 +1,5 @@
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/raelga/yodo)](https://goreportcard.com/report/github.com/raelga/yodo)
 [![GitHub](https://img.shields.io/github/license/raelga/yodo?style=flat-square)](https://github.com/raelga/yodo/blob/master/LICENSE)
 [![Coverage Status](https://coveralls.io/repos/github/raelga/yodo/badge.svg?branch=master)](https://coveralls.io/github/raelga/yodo?branch=master)
 
