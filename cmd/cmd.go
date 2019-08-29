@@ -73,6 +73,8 @@ func initConfig() {
 
 	} else {
 
+		cfgFile = defaultConfigFile
+
 		// Find home directory.
 		home, err := homedir.Dir()
 		if err != nil {
