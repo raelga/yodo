@@ -36,6 +36,7 @@ const defaultConfigFile = ".yodo"
 const defaultConfigFormat = "yaml"
 
 const defaultList = "default"
+const defaultListFormat = "yaml"
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
