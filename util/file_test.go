@@ -79,7 +79,7 @@ func Test_createTaskFile(t *testing.T) {
 
 }
 
-func Test_SaveTaskList(t *testing.T) {
+func Test_saveTasksFile(t *testing.T) {
 	type args struct {
 		listFilePath string
 		list         list
@@ -117,28 +117,28 @@ func Test_SaveTaskList(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run("errorHandling/"+tt.name, func(t *testing.T) {
-			if err := SaveTaskFile(tt.args.listFilePath, tt.args.list); (err != nil) != tt.wantErr {
-				t.Errorf("SaveTaskFile() error = %v, wantErr %v", err, tt.wantErr)
+			if err := saveTasksFile(tt.args.listFilePath, tt.args.list); (err != nil) != tt.wantErr {
+				t.Errorf("saveTasksFile() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
 
 		t.Run("savedState/"+tt.name, func(t *testing.T) {
-			if err := SaveTaskFile(tt.args.listFilePath, tt.args.list); err != nil {
+			if err := saveTasksFile(tt.args.listFilePath, tt.args.list); err != nil {
 				return
 			}
 
 			bytes, err := ioutil.ReadFile(tt.args.listFilePath)
 			if (err != nil) != tt.wantErr {
-				t.Errorf("SaveTaskFile() read error = %v, wantErr %v", err, tt.wantErr)
+				t.Errorf("saveTasksFile() read error = %v, wantErr %v", err, tt.wantErr)
 			}
 
 			savedList := list{}
 			if err := yaml.Unmarshal(bytes, &savedList); (err != nil) != tt.wantErr {
-				t.Errorf("SaveTaskFile() unmarshal error = %v, wantErr %v", err, tt.wantErr)
+				t.Errorf("saveTasksFile() unmarshal error = %v, wantErr %v", err, tt.wantErr)
 			}
 
 			if !reflect.DeepEqual(tt.args.list, savedList) {
-				t.Errorf("SaveTaskFile() drift error: %v", pretty.Diff(tt.args.list, savedList))
+				t.Errorf("saveTasksFile() drift error: %v", pretty.Diff(tt.args.list, savedList))
 			}
 
 		})
