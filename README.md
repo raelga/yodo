@@ -1,3 +1,4 @@
+[![Actions Status](https://github.com/raelga/yodo/workflows/Build/badge.svg)](https://github.com/raelga/yodo/actions)
 [![Build Status](https://travis-ci.org/raelga/yodo.svg?branch=master)](https://travis-ci.org/raelga/yodo)
 [![Go Report Card](https://goreportcard.com/badge/github.com/raelga/yodo)](https://goreportcard.com/report/github.com/raelga/yodo)
 [![Coverage Status](https://coveralls.io/repos/github/raelga/yodo/badge.svg?branch=master)](https://coveralls.io/github/raelga/yodo?branch=master)
