@@ -54,7 +54,9 @@ func Execute() {
 		fmt.Println(err)
 		os.Exit(1)
 	}
-	defer util.SaveTasks(viper.GetString("list_file"))
+	if err := util.SaveTasks(viper.GetString("list_file")); err != nil {
+		panic(err)
+	}
 }
 
 func init() {
@@ -93,7 +95,9 @@ func initConfig() {
 		viper.SetDefault("list", defaultList)
 		viper.SetDefault("list_dir", filepath.Join(home, defaultConfigDir))
 		viper.SetDefault("list_file", fmt.Sprintf("%s/%s.%s", viper.GetString("list_dir"), defaultList, defaultListFormat))
-		viper.WriteConfigAs(fmt.Sprintf("%s/%s.%s", home, cfgFile, defaultConfigFormat))
+		if err := viper.WriteConfigAs(fmt.Sprintf("%s/%s.%s", home, cfgFile, defaultConfigFormat)); err != nil {
+			panic(err)
+		}
 
 	}
 
