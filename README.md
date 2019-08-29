@@ -1,3 +1,6 @@
+
+![GitHub](https://img.shields.io/github/license/raelga/yodo?style=flat-square)
+
 # yodo
 
 Simple GoLang TODO application
