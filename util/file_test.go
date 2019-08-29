@@ -46,6 +46,7 @@ func Test_createTaskFile(t *testing.T) {
 		{name: "newListValidPath", args: args{listFilePath: tempFile.Name(), list: list{}}, wantErr: true},
 		{name: "defaultListBadPath", args: args{listFilePath: "/fake-folder/dep.yaml", list: defaultList}, wantErr: true},
 		{name: "defaultListFolderPath", args: args{listFilePath: "/fake-folder/", list: defaultList}, wantErr: true},
+		{name: "emptyFilePath", args: args{listFilePath: "", list: defaultList}, wantErr: true},
 	}
 
 	for _, tt := range tests {
@@ -113,6 +114,7 @@ func Test_saveTasksFile(t *testing.T) {
 		{name: "empyListValidPath", args: args{listFilePath: tempFile.Name(), list: emptyList}, wantErr: false},
 		{name: "defaultListBadPath", args: args{listFilePath: "/fake-folder/dep.yaml", list: defaultList}, wantErr: true},
 		{name: "defaultListFolderPath", args: args{listFilePath: "/fake-folder/", list: defaultList}, wantErr: true},
+		{name: "emptyFilePath", args: args{listFilePath: "", list: defaultList}, wantErr: true},
 	}
 
 	for _, tt := range tests {
