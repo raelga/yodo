@@ -21,10 +21,11 @@ import (
 	"os"
 	"path/filepath"
 
+	"github.com/raelga/yodo/util"
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 
 	homedir "github.com/mitchellh/go-homedir"
-	"github.com/spf13/viper"
 )
 
 var verbose bool
@@ -36,6 +37,7 @@ const defaultConfigFile = ".yodo"
 const defaultConfigFormat = "yaml"
 
 const defaultList = "default"
+const defaultListFormat = "yaml"
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
@@ -52,6 +54,7 @@ func Execute() {
 		fmt.Println(err)
 		os.Exit(1)
 	}
+	defer util.SaveTasks(viper.GetString("list_file"))
 }
 
 func init() {
@@ -59,7 +62,7 @@ func init() {
 
 	// Config flag
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.yodo.yaml)")
-	rootCmd.PersistentFlags().BoolVar(&verbose, "verbose", viper.GetBool("verbose"), "verbose")
+	rootCmd.PersistentFlags().BoolVar(&verbose, "verbose", false, "verbose")
 
 }
 
@@ -72,6 +75,8 @@ func initConfig() {
 		viper.SetConfigFile(cfgFile)
 
 	} else {
+
+		cfgFile = defaultConfigFile
 
 		// Find home directory.
 		home, err := homedir.Dir()
@@ -87,13 +92,19 @@ func initConfig() {
 		viper.SetDefault("verbose", false)
 		viper.SetDefault("list", defaultList)
 		viper.SetDefault("list_dir", filepath.Join(home, defaultConfigDir))
-		viper.SafeWriteConfigAs(fmt.Sprintf("%s/%s.%s", home, defaultConfigFile, defaultConfigFormat))
+		viper.SetDefault("list_file", fmt.Sprintf("%s/%s.%s", viper.GetString("list_dir"), defaultList, defaultListFormat))
+		viper.WriteConfigAs(fmt.Sprintf("%s/%s.%s", home, cfgFile, defaultConfigFormat))
+
 	}
 
 	// If a config file is found, read it in.
-	if err := viper.ReadInConfig(); err == nil {
-		fmt.Println("Using config file:", viper.ConfigFileUsed())
-	} else {
+	if err := viper.ReadInConfig(); err != nil {
 		panic(fmt.Errorf("Fatal error config file: %s", err))
 	}
+
+	// Load List
+	if err := util.LoadTasks(viper.GetString("list_file")); err != nil {
+		panic(err)
+	}
+
 }
