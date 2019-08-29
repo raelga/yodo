@@ -1,5 +1,6 @@
 
-![GitHub](https://img.shields.io/github/license/raelga/yodo?style=flat-square)
+[![GitHub](https://img.shields.io/github/license/raelga/yodo?style=flat-square)](https://github.com/raelga/yodo/blob/master/LICENSE)
+[![Coverage Status](https://coveralls.io/repos/github/raelga/yodo/badge.svg?branch=master)](https://coveralls.io/github/raelga/yodo?branch=master)
 
 # yodo
 
