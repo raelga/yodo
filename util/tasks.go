@@ -2,8 +2,6 @@ package util
 
 import (
 	"fmt"
-	"os"
-	"path/filepath"
 )
 
 type task struct {
@@ -70,18 +68,4 @@ func GetTasks() string {
 		out += "Empty list\n"
 	}
 	return out
-}
-
-// createTaskFile
-func createTaskFile(taskFile string) {
-	if err := os.MkdirAll(filepath.Dir(taskFile), 0755); err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
-	if defaultCfgFile, err := os.Create(taskFile); err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	} else {
-		defaultCfgFile.Close()
-	}
 }
