@@ -7,37 +7,39 @@ import (
 )
 
 type task struct {
-	id          int
-	status      bool
-	description string
+	ID          int
+	Status      bool
+	Description string
 }
 
 type list struct {
-	id    int
-	name  string
-	tasks []task
+	ID    int
+	Name  string
+	Tasks []task
 }
 
 var defaultList = list{
-	id:    0,
-	name:  "default",
-	tasks: make([]task, 0),
+	ID:    0,
+	Name:  "default",
+	Tasks: make([]task, 0),
 }
+
+var taskList = list{}
 
 // AddTask adds a task to task list
 func AddTask(status bool, description string) string {
-	task := task{id: 0, status: status, description: description}
-	defaultList.tasks = append(defaultList.tasks, task)
-	return fmt.Sprintf("add task \"%s\" (%t) to file", task.description, task.status)
+	task := task{ID: 0, Status: status, Description: description}
+	defaultList.Tasks = append(defaultList.Tasks, task)
+	return fmt.Sprintf("add task \"%s\" (%t) to file", task.Description, task.Status)
 }
 
 // DoTask deletes a tast from the task list
 func DoTask(taskID int) string {
-	if defaultList.tasks != nil {
-		for i, task := range defaultList.tasks {
-			if task.id == taskID {
-				defaultList.tasks[i].status = true
-				return fmt.Sprintf("Task %d done.\n", task.id)
+	if defaultList.Tasks != nil {
+		for i, task := range defaultList.Tasks {
+			if task.ID == taskID {
+				defaultList.Tasks[i].Status = true
+				return fmt.Sprintf("Task %d done.\n", task.ID)
 			}
 		}
 	}
@@ -46,11 +48,11 @@ func DoTask(taskID int) string {
 
 // RemoveTask deletes a tast from the task list
 func RemoveTask(taskID int) string {
-	if defaultList.tasks != nil {
-		for i, task := range defaultList.tasks {
-			if task.id == taskID {
-				defaultList.tasks = append(defaultList.tasks[:i], defaultList.tasks[i+1:]...)
-				return fmt.Sprintf("Task %d removed.\n", task.id)
+	if defaultList.Tasks != nil {
+		for i, task := range defaultList.Tasks {
+			if task.ID == taskID {
+				defaultList.Tasks = append(defaultList.Tasks[:i], defaultList.Tasks[i+1:]...)
+				return fmt.Sprintf("Task %d removed.\n", task.ID)
 			}
 		}
 	}
@@ -59,10 +61,10 @@ func RemoveTask(taskID int) string {
 
 // GetTasks get task list
 func GetTasks() string {
-	out := fmt.Sprintf("%s:\n", defaultList.name)
-	if len(defaultList.tasks) > 0 {
-		for i, task := range defaultList.tasks {
-			out += fmt.Sprintf("- [%d] \"%s\" (%t)\n", i, task.description, task.status)
+	out := fmt.Sprintf("%s:\n", defaultList.Name)
+	if len(defaultList.Tasks) > 0 {
+		for i, task := range defaultList.Tasks {
+			out += fmt.Sprintf("- [%d] \"%s\" (%t)\n", i, task.Description, task.Status)
 		}
 	} else {
 		out += "Empty list\n"
