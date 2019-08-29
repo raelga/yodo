@@ -1,3 +1,4 @@
+// Package cmd > remove
 /*
 Copyright © 2019 Rael Garcia <rael@rael.io>
 

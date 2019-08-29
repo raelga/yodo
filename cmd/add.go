@@ -1,3 +1,4 @@
+// Package cmd > add
 /*
 Copyright © 2019 Rael Garcia <rael@rael.io>
 

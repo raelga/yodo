@@ -1,3 +1,4 @@
+// Package cmd > get
 /*
 Copyright © 2019 Rael Garcia <rael@rael.io>
 

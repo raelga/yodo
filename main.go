@@ -19,5 +19,5 @@ package main
 import "github.com/raelga/yodo/cmd"
 
 func main() {
-  cmd.Execute()
+	cmd.Execute()
 }

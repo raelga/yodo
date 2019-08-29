@@ -1,3 +1,4 @@
+// Package cmd > do
 /*
 Copyright © 2019 Rael Garcia <rael@rael.io>
 
