@@ -91,6 +91,8 @@ func initConfig() {
 		viper.SetDefault("list", defaultList)
 		viper.SetDefault("list_dir", filepath.Join(home, defaultConfigDir))
 		viper.SetDefault("list_file", fmt.Sprintf("%s/%s.%s", viper.GetString("list_dir"), defaultList, defaultListFormat))
+		viper.WriteConfigAs(fmt.Sprintf("%s/%s.%s", home, cfgFile, defaultConfigFormat))
+
 	}
 
 	// If a config file is found, read it in.
